@@ -16,18 +16,18 @@ soup = BeautifulSoup(raw_html, 'lxml')
 
 items = soup.find_all('div', {'id':re.compile("item_\S+")})
 
-
-i = []
-
 for item in items:
 
-    id = item.attrs['id'][5:]
-    
+    id_string = item.attrs['id']
+
+    id = id_string[id_string.find('_')+1:]
     title = item.find('a', {'id':'itemName_{id}'.format(id=id)}).attrs['title']
 
-    id.attrs['title']
+    item.find('span', {'id':'itemPrice_{id}'.format(id=id)}).contents
+    
+    print(id, title)
 
-item_id = i1.attrs['id']
+    
 
 
 id_start = item_id.index('_') + 1
